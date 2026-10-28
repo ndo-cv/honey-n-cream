@@ -1,1 +1,1618 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<script>
+  /* Prevent flash of wrong theme */
+  (function(){
+    try{
+      var saved = localStorage.getItem('hc-theme');
+      var theme = saved || ((window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    }catch(e){ document.documentElement.setAttribute('data-theme','light'); }
+  })();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Honey & Cream — Café & Brunch, North London (N20)</title>
+<meta name="description" content="Honey & Cream is a cosy neighbourhood café and brunch restaurant on the High Road in North London, serving great coffee, hearty brunches, fresh juices and indulgent desserts every day, 8am–4:30pm.">
+<meta property="og:title" content="Honey & Cream — Café & Brunch, North London">
+<meta property="og:description" content="A welcoming neighbourhood café for breakfast, brunch, coffee and indulgent treats. 1367 High Rd, London N20 9LN. Open every day, 8am–4:30pm.">
+<meta property="og:image" content="https://i.ibb.co/sJRbJ4Ks/honey-n-cream.webp">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#102B3F">
 
+<!-- Favicon: text-based wordmark fallback (no verified logo asset supplied) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23102B3F'/%3E%3Ctext x='32' y='42' font-size='30' text-anchor='middle' fill='%23E2CFEA' font-family='Georgia,serif'%3EH%26C%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@700,900,500&display=swap">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CafeOrCoffeeShop",
+  "name": "Honey & Cream",
+  "image": "https://i.ibb.co/sJRbJ4Ks/honey-n-cream.webp",
+  "telephone": "+447757726240",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1367 High Rd",
+    "addressLocality": "London",
+    "postalCode": "N20 9LN",
+    "addressCountry": "GB"
+  },
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens": "08:00",
+    "closes": "16:30"
+  }],
+  "sameAs": ["https://www.instagram.com/honeycreamkitchen/"]
+}
+</script>
+
+<style>
+/* ===================================================================
+   HONEY & CREAM — DESIGN SYSTEM
+   =================================================================== */
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *,*::before,*::after{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important;}
+}
+
+:root{
+  --c-thistle:#E2CFEA;
+  --c-lavender:#A06CD5;
+  --c-lilac:#6247AA;
+  --c-deepspace:#102B3F;
+  --c-evergreen:#062726;
+
+  --font-display:'Satoshi','Segoe UI',system-ui,-apple-system,sans-serif;
+  --font-serif:'Playfair Display',Georgia,'Times New Roman',serif;
+  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+
+  --radius-sm:8px;
+  --radius-md:16px;
+  --radius-lg:28px;
+  --container:1240px;
+
+  --transition-fast:150ms ease;
+  --transition-med:320ms cubic-bezier(.4,0,.2,1);
+}
+
+[data-theme="light"]{
+  --bg:#FBF8F5;
+  --bg-soft:#F3E8F7;
+  --surface:#FFFFFF;
+  --surface-raised:#FFFFFF;
+  --text:#17222B;
+  --text-muted:#4F5F6B;
+  --border:rgba(16,43,63,0.12);
+  --border-strong:rgba(16,43,63,0.22);
+  --accent:var(--c-lavender);
+  --accent-strong:var(--c-lilac);
+  --on-accent:#FFFFFF;
+  --nav-bg:rgba(251,248,245,0.86);
+  --shadow:0 18px 40px -16px rgba(16,43,63,0.18);
+  --shadow-sm:0 6px 18px -10px rgba(16,43,63,0.18);
+  --chip-bg:#FFFFFF;
+  --chip-active-bg:var(--c-deepspace);
+  --chip-active-text:#FFFFFF;
+  --input-bg:#FFFFFF;
+}
+[data-theme="dark"]{
+  --bg:#0C2638;
+  --bg-soft:#0A2E2D;
+  --surface:#133248;
+  --surface-raised:#17394F;
+  --text:#F1E9F5;
+  --text-muted:#C6B9D6;
+  --border:rgba(226,207,234,0.14);
+  --border-strong:rgba(226,207,234,0.26);
+  --accent:var(--c-lavender);
+  --accent-strong:var(--c-thistle);
+  --on-accent:#17222B;
+  --nav-bg:rgba(12,38,56,0.82);
+  --shadow:0 18px 44px -14px rgba(0,0,0,0.55);
+  --shadow-sm:0 8px 20px -10px rgba(0,0,0,0.5);
+  --chip-bg:#133248;
+  --chip-active-bg:var(--c-lavender);
+  --chip-active-text:#17222B;
+  --input-bg:#0C2638;
+}
+
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  transition:background var(--transition-med),color var(--transition-med);
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+ul{margin:0;padding:0;list-style:none;}
+button{font:inherit;color:inherit;}
+h1,h2,h3,h4{margin:0;font-weight:600;}
+p{margin:0;}
+
+.visually-hidden{
+  position:absolute !important;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+}
+.skip-link{
+  position:absolute;left:1rem;top:-60px;background:var(--c-deepspace);color:#fff;
+  padding:.8rem 1.2rem;border-radius:var(--radius-sm);z-index:999;transition:top .2s ease;
+}
+.skip-link:focus{top:1rem;}
+
+:focus-visible{outline:3px solid var(--c-lavender);outline-offset:3px;border-radius:4px;}
+
+.container{max-width:var(--container);margin:0 auto;padding:0 1.5rem;}
+@media(min-width:640px){.container{padding:0 2.5rem;}}
+
+.section-pad{padding:clamp(3.5rem,8vw,7rem) 0;}
+
+.eyebrow{
+  font-family:var(--font-body);
+  font-size:.78rem;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--accent-strong);
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  margin-bottom:.9rem;
+}
+.eyebrow::before{
+  content:"";
+  width:28px;height:1.5px;
+  background:var(--accent-strong);
+  display:inline-block;
+}
+
+.section-title{
+  font-family:var(--font-serif);
+  font-weight:600;
+  font-size:clamp(2rem,4.2vw,3.1rem);
+  line-height:1.12;
+  letter-spacing:-0.01em;
+  color:var(--text);
+}
+.section-lede{
+  font-size:clamp(1rem,1.6vw,1.15rem);
+  color:var(--text-muted);
+  max-width:56ch;
+  margin-top:1rem;
+}
+
+/* Buttons */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+  padding:.95rem 1.7rem;
+  border-radius:100px;
+  font-family:var(--font-body);
+  font-weight:600;
+  font-size:.98rem;
+  border:1.5px solid transparent;
+  cursor:pointer;
+  transition:transform var(--transition-fast),box-shadow var(--transition-fast),background var(--transition-fast),color var(--transition-fast),border-color var(--transition-fast);
+  white-space:nowrap;
+}
+.btn:active{transform:translateY(1px);}
+.btn-primary{
+  background:var(--c-deepspace);
+  color:#fff;
+  box-shadow:0 10px 24px -10px rgba(16,43,63,0.5);
+}
+[data-theme="dark"] .btn-primary{background:var(--c-lavender);color:#17222B;box-shadow:0 10px 24px -10px rgba(160,108,213,0.5);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 30px -10px rgba(16,43,63,0.55);}
+.btn-outline{
+  background:transparent;
+  border-color:var(--border-strong);
+  color:var(--text);
+}
+.btn-outline:hover{border-color:var(--accent-strong);color:var(--accent-strong);transform:translateY(-2px);}
+.btn-ig{
+  background:linear-gradient(135deg,#F7A14D,#D23A8F 55%,#6B3FA0);
+  color:#fff;
+  box-shadow:0 10px 22px -10px rgba(210,58,143,0.55);
+}
+.btn-ig:hover{transform:translateY(-2px);filter:brightness(1.05);}
+.btn-sm{padding:.6rem 1.1rem;font-size:.85rem;}
+
+/* ============== HEADER / NAV ============== */
+.site-header{
+  position:sticky;top:0;z-index:100;
+  background:var(--nav-bg);
+  backdrop-filter:blur(14px) saturate(140%);
+  -webkit-backdrop-filter:blur(14px) saturate(140%);
+  border-bottom:1px solid var(--border);
+  transition:background var(--transition-med),border-color var(--transition-med);
+}
+.nav-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.9rem 0;
+  max-width:var(--container);margin:0 auto;padding-left:1.5rem;padding-right:1.5rem;
+}
+@media(min-width:640px){.nav-inner{padding-left:2.5rem;padding-right:2.5rem;}}
+
+.wordmark{
+  font-family:var(--font-serif);
+  font-size:1.45rem;
+  font-weight:700;
+  color:var(--text);
+  display:flex;align-items:baseline;gap:.3rem;
+  letter-spacing:-0.01em;
+}
+.wordmark em{
+  font-style:italic;
+  color:var(--accent-strong);
+  font-weight:500;
+}
+
+.nav-links{
+  display:flex;align-items:center;gap:2rem;
+  list-style:none;
+}
+.nav-links a{
+  font-size:.95rem;font-weight:500;color:var(--text);
+  position:relative;padding:.3rem 0;
+  transition:color var(--transition-fast);
+}
+.nav-links a::after{
+  content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;
+  background:var(--accent-strong);transition:width var(--transition-fast);
+}
+.nav-links a:hover,.nav-links a:focus-visible{color:var(--accent-strong);}
+.nav-links a:hover::after,.nav-links a:focus-visible::after{width:100%;}
+
+.nav-actions{display:flex;align-items:center;gap:.7rem;}
+
+.icon-btn{
+  width:42px;height:42px;border-radius:50%;
+  display:inline-flex;align-items:center;justify-content:center;
+  background:var(--surface);
+  border:1px solid var(--border);
+  cursor:pointer;
+  transition:transform var(--transition-fast),background var(--transition-fast),border-color var(--transition-fast);
+}
+.icon-btn:hover{transform:translateY(-2px);border-color:var(--accent-strong);}
+.icon-btn svg{width:19px;height:19px;}
+
+.theme-toggle .sun{display:none;}
+[data-theme="dark"] .theme-toggle .sun{display:block;}
+[data-theme="dark"] .theme-toggle .moon{display:none;}
+
+.ig-nav-btn{
+  background:linear-gradient(135deg,#F7A14D,#D23A8F 55%,#6B3FA0);
+  color:#fff;border:none;
+}
+
+.hamburger{display:none;width:44px;height:44px;border-radius:50%;background:var(--surface);border:1px solid var(--border);cursor:pointer;position:relative;}
+.hamburger span{
+  position:absolute;left:12px;right:12px;height:2px;background:var(--text);
+  transition:transform var(--transition-fast),opacity var(--transition-fast);
+}
+.hamburger span:nth-child(1){top:16px;}
+.hamburger span:nth-child(2){top:22px;}
+.hamburger span:nth-child(3){top:28px;}
+.hamburger[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+.hamburger[aria-expanded="true"] span:nth-child(2){opacity:0;}
+.hamburger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+
+@media(max-width:900px){
+  .nav-links{
+    position:fixed;inset:0 0 0 auto;top:0;
+    height:100vh;width:min(86vw,360px);
+    background:var(--surface);
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:flex-start;
+    padding:6.5rem 2rem 2rem;
+    gap:1.6rem;
+    transform:translateX(100%);
+    transition:transform var(--transition-med);
+    box-shadow:-20px 0 50px rgba(0,0,0,0.18);
+    z-index:120;
+  }
+  .nav-links.open{transform:translateX(0);}
+  .nav-links a{font-size:1.15rem;}
+  .hamburger{display:block;z-index:130;}
+  .nav-backdrop{
+    position:fixed;inset:0;background:rgba(10,20,30,0.4);
+    opacity:0;pointer-events:none;transition:opacity var(--transition-med);
+    z-index:110;
+  }
+  .nav-backdrop.open{opacity:1;pointer-events:auto;}
+}
+
+/* ============== HERO ============== */
+.hero{
+  position:relative;
+  background:var(--bg);
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.05fr 1fr;
+  gap:clamp(2rem,5vw,4rem);
+  align-items:center;
+  padding:clamp(2.5rem,6vw,4.5rem) 0 clamp(3rem,6vw,5rem);
+}
+.hero-copy{max-width:580px;}
+.hero-kicker{
+  display:inline-flex;align-items:center;gap:.6rem;
+  background:var(--bg-soft);
+  color:var(--c-lilac);
+  [data-theme="dark"] &{color:var(--c-thistle);}
+  padding:.5rem 1rem;border-radius:100px;
+  font-size:.82rem;font-weight:600;letter-spacing:.04em;
+  margin-bottom:1.6rem;
+}
+[data-theme="dark"] .hero-kicker{background:rgba(226,207,234,0.1);color:var(--c-thistle);}
+.hero-kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--c-lavender);}
+
+.hero h1{
+  font-family:var(--font-display);
+  font-weight:900;
+  font-size:clamp(2.5rem,6vw,4.1rem);
+  line-height:1.04;
+  letter-spacing:-0.02em;
+  color:var(--text);
+  margin-bottom:1.4rem;
+}
+.hero h1 .accent{color:var(--c-lavender);font-style:italic;font-family:var(--font-serif);font-weight:600;}
+
+.hero p.lede{
+  font-size:clamp(1.02rem,1.6vw,1.2rem);
+  color:var(--text-muted);
+  max-width:46ch;
+  margin-bottom:2.2rem;
+}
+.hero-actions{display:flex;flex-wrap:wrap;gap:.9rem;margin-bottom:1.8rem;}
+.hero-meta{
+  display:flex;flex-wrap:wrap;gap:1.4rem;
+  padding-top:1.4rem;border-top:1px solid var(--border);
+  font-size:.88rem;color:var(--text-muted);
+}
+.hero-meta strong{color:var(--text);font-weight:600;}
+.hero-meta-item{display:flex;align-items:center;gap:.5rem;}
+.hero-meta-item svg{width:16px;height:16px;flex-shrink:0;color:var(--accent-strong);}
+
+.hero-visual{
+  position:relative;
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  aspect-ratio:4/5;
+  box-shadow:var(--shadow);
+  background:var(--c-thistle);
+}
+.hero-visual img{
+  width:100%;height:100%;object-fit:cover;object-position:center 30%;
+}
+.hero-visual::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(0deg,rgba(16,43,63,0.28),transparent 42%);
+  pointer-events:none;
+}
+.hero-badge{
+  position:absolute;bottom:1.3rem;left:1.3rem;
+  background:rgba(255,255,255,0.92);
+  color:var(--c-deepspace);
+  padding:.8rem 1.1rem;
+  border-radius:var(--radius-md);
+  font-family:var(--font-serif);
+  font-style:italic;
+  font-size:.95rem;
+  box-shadow:0 10px 24px rgba(0,0,0,0.18);
+}
+
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;}
+  .hero-copy{max-width:100%;order:1;}
+  .hero-visual{order:2;aspect-ratio:5/4;}
+  .hero-actions{gap:.7rem;}
+}
+@media(max-width:480px){
+  .hero-actions .btn{flex:1 1 auto;}
+}
+
+/* ============== STORY SECTION ============== */
+.story{
+  background:var(--bg-soft);
+  position:relative;
+  overflow:hidden;
+}
+.story-grid{
+  display:grid;grid-template-columns:0.9fr 1.1fr;
+  gap:clamp(2.5rem,6vw,5rem);
+  align-items:center;
+}
+.story-art{
+  position:relative;
+}
+.story-art .motif{
+  position:absolute;
+  width:120%;height:120%;
+  top:-10%;left:-10%;
+  border:1.5px solid var(--border-strong);
+  border-radius:50%;
+  pointer-events:none;
+  opacity:.5;
+}
+.story-art-inner{
+  background:var(--c-deepspace);
+  color:var(--c-thistle);
+  border-radius:var(--radius-lg);
+  padding:clamp(2rem,4vw,3rem);
+  position:relative;
+  z-index:1;
+}
+.story-art-inner .quote-mark{
+  font-family:var(--font-serif);
+  font-size:4rem;
+  line-height:1;
+  color:var(--c-lavender);
+  margin-bottom:.5rem;
+  display:block;
+}
+.story-art-inner p{
+  font-family:var(--font-serif);
+  font-size:clamp(1.2rem,2.2vw,1.5rem);
+  font-style:italic;
+  line-height:1.5;
+}
+.story-copy p{
+  font-size:1.05rem;
+  color:var(--text-muted);
+  margin-bottom:1.2rem;
+  max-width:60ch;
+}
+.story-tags{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.6rem;}
+.tag{
+  background:var(--surface);
+  border:1px solid var(--border);
+  padding:.5rem 1rem;
+  border-radius:100px;
+  font-size:.82rem;
+  font-weight:600;
+  color:var(--text);
+}
+@media(max-width:860px){
+  .story-grid{grid-template-columns:1fr;}
+  .story-art{order:2;max-width:480px;margin:0 auto;}
+  .story-copy{order:1;}
+}
+
+/* ============== FEATURE IMAGE (second main image) ============== */
+.feature-photo{
+  position:relative;
+  background:var(--bg);
+}
+.feature-photo-inner{
+  position:relative;
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
+.feature-photo img{
+  width:100%;
+  height:clamp(320px,56vw,620px);
+  object-fit:cover;
+  object-position:center 38%;
+}
+.feature-caption{
+  position:absolute;
+  left:0;right:0;bottom:0;
+  padding:clamp(1.5rem,4vw,3rem);
+  background:linear-gradient(0deg,rgba(6,39,38,0.78),rgba(6,39,38,0) 75%);
+  color:#fff;
+}
+.feature-caption .eyebrow{color:var(--c-thistle);}
+.feature-caption .eyebrow::before{background:var(--c-thistle);}
+.feature-caption h3{
+  font-family:var(--font-serif);
+  font-size:clamp(1.4rem,3vw,2.1rem);
+  font-weight:600;
+  max-width:28ch;
+}
+
+/* ============== GALLERY ============== */
+.gallery{background:var(--bg);overflow:hidden;}
+.gallery-head{
+  display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;
+  margin-bottom:2.2rem;
+}
+.gallery-track-wrap{
+  width:100%;overflow:hidden;
+  mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);
+}
+.gallery-track{
+  display:flex;
+  gap:1.1rem;
+  width:max-content;
+  animation:gallery-scroll 42s linear infinite;
+}
+.gallery-track-wrap:hover .gallery-track,
+.gallery-track-wrap:focus-within .gallery-track{
+  animation-play-state:paused;
+}
+@keyframes gallery-scroll{
+  from{transform:translateX(0);}
+  to{transform:translateX(-50%);}
+}
+.gallery-item{
+  flex:0 0 auto;
+  width:clamp(220px,28vw,340px);
+  height:clamp(280px,32vw,400px);
+  border-radius:var(--radius-md);
+  overflow:hidden;
+  background:var(--c-thistle);
+  box-shadow:var(--shadow-sm);
+}
+.gallery-item img{width:100%;height:100%;object-fit:cover;}
+
+@media (prefers-reduced-motion: reduce){
+  .gallery-track{animation:none;}
+  .gallery-track-wrap{overflow-x:auto;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;}
+  .gallery-item{scroll-snap-align:start;}
+}
+@media(max-width:600px){
+  .gallery-track-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .gallery-track{animation:none;gap:.8rem;}
+  .gallery-item{width:72vw;height:280px;}
+}
+
+/* ============== MENU ============== */
+.menu-section{background:var(--bg);}
+.menu-intro{
+  display:flex;flex-direction:column;gap:1.5rem;
+  margin-bottom:2.2rem;
+}
+.menu-toolbar{
+  position:sticky;top:72px;z-index:40;
+  background:var(--bg);
+  padding:1rem 0;
+  border-bottom:1px solid var(--border);
+}
+[data-theme="dark"] .menu-toolbar{background:var(--bg);}
+.search-wrap{
+  position:relative;
+  max-width:420px;
+  margin-bottom:1rem;
+}
+.search-wrap svg{
+  position:absolute;left:1rem;top:50%;transform:translateY(-50%);
+  width:18px;height:18px;color:var(--text-muted);pointer-events:none;
+}
+.search-input{
+  width:100%;
+  padding:.85rem 1rem .85rem 2.6rem;
+  border-radius:100px;
+  border:1.5px solid var(--border);
+  background:var(--input-bg);
+  color:var(--text);
+  font-size:.98rem;
+  transition:border-color var(--transition-fast);
+}
+.search-input:focus{border-color:var(--accent-strong);}
+.search-input::placeholder{color:var(--text-muted);}
+
+.chip-row{
+  display:flex;gap:.6rem;overflow-x:auto;padding-bottom:.3rem;
+  scrollbar-width:thin;
+}
+.chip-row::-webkit-scrollbar{height:6px;}
+.chip-row::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:4px;}
+.chip{
+  flex:0 0 auto;
+  background:var(--chip-bg);
+  border:1px solid var(--border);
+  color:var(--text);
+  padding:.55rem 1.1rem;
+  border-radius:100px;
+  font-size:.88rem;
+  font-weight:600;
+  white-space:nowrap;
+  cursor:pointer;
+  transition:background var(--transition-fast),color var(--transition-fast),border-color var(--transition-fast);
+}
+.chip:hover{border-color:var(--accent-strong);}
+.chip.active{background:var(--chip-active-bg);color:var(--chip-active-text);border-color:transparent;}
+
+.no-results{
+  text-align:center;
+  padding:3rem 1rem;
+  color:var(--text-muted);
+  font-size:1.05rem;
+  display:none;
+}
+.no-results.show{display:block;}
+
+.menu-category{
+  padding:2.8rem 0;
+  border-bottom:1px solid var(--border);
+  scroll-margin-top:150px;
+}
+.menu-category:last-of-type{border-bottom:none;}
+.menu-category.featured{
+  background:var(--bg-soft);
+  border-radius:var(--radius-lg);
+  padding:2.8rem clamp(1rem,4vw,2.5rem);
+  margin:2.8rem 0;
+  border-bottom:none;
+}
+.menu-cat-head{
+  display:flex;
+  flex-direction:column;
+  gap:.4rem;
+  margin-bottom:1.8rem;
+}
+.menu-cat-head h3{
+  font-family:var(--font-serif);
+  font-size:clamp(1.5rem,2.6vw,2rem);
+  font-weight:600;
+  color:var(--text);
+  display:flex;align-items:center;gap:.7rem;
+}
+.menu-cat-head .star{color:var(--c-lavender);font-size:1rem;}
+.menu-cat-head .blurb{color:var(--text-muted);font-size:.95rem;}
+
+.menu-items{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:1.6rem 2.6rem;
+}
+.menu-items.single-col{grid-template-columns:1fr;}
+@media(max-width:760px){
+  .menu-items{grid-template-columns:1fr;}
+}
+
+.menu-item{
+  padding-bottom:1.3rem;
+  border-bottom:1px dashed var(--border);
+}
+.menu-item:last-child{border-bottom:none;}
+.menu-item-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:1rem;
+}
+.menu-item-name{
+  font-family:var(--font-body);
+  font-weight:700;
+  font-size:1.03rem;
+  color:var(--text);
+}
+.menu-item-price{
+  font-family:var(--font-serif);
+  font-weight:600;
+  font-size:1.05rem;
+  color:var(--accent-strong);
+  white-space:nowrap;
+}
+.menu-item-desc{
+  font-size:.92rem;
+  color:var(--text-muted);
+  margin-top:.35rem;
+  max-width:60ch;
+}
+.menu-item-note{
+  display:inline-block;
+  margin-top:.45rem;
+  font-size:.76rem;
+  font-weight:700;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+  color:var(--c-lilac);
+  background:rgba(160,108,213,0.12);
+  padding:.25rem .6rem;
+  border-radius:100px;
+}
+[data-theme="dark"] .menu-item-note{color:var(--c-thistle);background:rgba(226,207,234,0.1);}
+
+.menu-extras{
+  margin-top:.6rem;
+  font-size:.86rem;
+  color:var(--text-muted);
+}
+.menu-extras .extra-label{
+  font-weight:700;
+  color:var(--text);
+  margin-right:.3rem;
+}
+.menu-extras .extra-pill{
+  display:inline-block;
+  background:var(--surface);
+  border:1px solid var(--border);
+  padding:.18rem .55rem;
+  border-radius:100px;
+  margin:.15rem .25rem .15rem 0;
+}
+
+.menu-sizes{
+  display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.6rem;
+}
+.size-pill{
+  background:var(--surface);
+  border:1px solid var(--border);
+  padding:.4rem .8rem;
+  border-radius:100px;
+  font-size:.86rem;
+  display:flex;gap:.4rem;
+}
+.size-pill .sz{color:var(--text-muted);}
+.size-pill .pr{font-weight:700;color:var(--accent-strong);}
+
+/* simple list items (no desc) get a tighter two-col layout handled already by grid */
+
+/* ============== REVIEWS ============== */
+.reviews{background:var(--bg-soft);}
+.reviews-card{
+  background:var(--surface);
+  border-radius:var(--radius-lg);
+  padding:clamp(2rem,5vw,3.5rem);
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  align-items:center;
+  gap:2rem;
+  box-shadow:var(--shadow-sm);
+}
+.reviews-card .stars{
+  display:flex;gap:.3rem;color:var(--c-lavender);margin-bottom:.8rem;
+}
+.reviews-card .stars svg{width:22px;height:22px;}
+.reviews-card h3{
+  font-family:var(--font-serif);
+  font-size:clamp(1.3rem,2.6vw,1.8rem);
+  max-width:28ch;
+}
+.reviews-card p{color:var(--text-muted);margin-top:.6rem;max-width:48ch;}
+
+/* ============== LOCATION / CONTACT ============== */
+.location{background:var(--bg);}
+.location-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(2rem,5vw,4rem);
+}
+.location-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:clamp(1.8rem,3.5vw,2.6rem);
+}
+.location-card h3{
+  font-family:var(--font-serif);
+  font-size:1.5rem;margin-bottom:1.2rem;
+}
+.loc-detail{
+  display:flex;gap:.9rem;margin-bottom:1.3rem;
+}
+.loc-detail svg{width:20px;height:20px;flex-shrink:0;color:var(--accent-strong);margin-top:.15rem;}
+.loc-detail div strong{display:block;color:var(--text);font-weight:700;margin-bottom:.15rem;}
+.loc-detail div span{color:var(--text-muted);font-size:.95rem;}
+.loc-actions{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.6rem;}
+
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:1rem;
+}
+.info-pill{
+  display:flex;align-items:flex-start;gap:.7rem;
+  background:var(--bg-soft);
+  border-radius:var(--radius-md);
+  padding:1rem 1.1rem;
+  font-size:.88rem;
+  color:var(--text);
+}
+.info-pill svg{width:18px;height:18px;flex-shrink:0;color:var(--accent-strong);margin-top:.1rem;}
+
+@media(max-width:860px){
+  .location-grid{grid-template-columns:1fr;}
+  .info-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:480px){
+  .info-grid{grid-template-columns:1fr;}
+}
+
+/* ============== FOOTER ============== */
+.site-footer{
+  background:linear-gradient(160deg,var(--c-deepspace),var(--c-evergreen));
+  color:var(--c-thistle);
+  padding:clamp(3rem,6vw,5rem) 0 2rem;
+}
+.footer-grid{
+  display:grid;
+  grid-template-columns:1.3fr 1fr 1fr;
+  gap:2.5rem;
+  padding-bottom:2.5rem;
+  border-bottom:1px solid rgba(226,207,234,0.14);
+}
+.footer-brand .wordmark{color:#fff;}
+.footer-brand .wordmark em{color:var(--c-lavender);}
+.footer-brand p{color:rgba(226,207,234,0.75);margin-top:1rem;max-width:36ch;font-size:.92rem;}
+.footer-col h4{
+  font-size:.82rem;text-transform:uppercase;letter-spacing:.1em;
+  color:rgba(226,207,234,0.6);margin-bottom:1.1rem;
+}
+.footer-col ul li{margin-bottom:.7rem;}
+.footer-col a{color:rgba(255,255,255,0.92);font-size:.95rem;transition:color var(--transition-fast);}
+.footer-col a:hover{color:var(--c-lavender);}
+.footer-social{
+  display:inline-flex;align-items:center;gap:.6rem;
+  margin-top:.4rem;
+  padding:.6rem 1rem;
+  border-radius:100px;
+  background:rgba(226,207,234,0.1);
+  font-size:.9rem;font-weight:600;
+}
+.footer-social:hover{background:rgba(226,207,234,0.18);}
+.footer-bottom{
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;
+  padding-top:1.6rem;
+  font-size:.82rem;
+  color:rgba(226,207,234,0.6);
+}
+
+@media(max-width:760px){
+  .footer-grid{grid-template-columns:1fr;gap:2rem;}
+}
+
+/* reveal animation */
+.reveal{
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity .7s ease, transform .7s ease;
+}
+.reveal.in-view{opacity:1;transform:translateY(0);}
+@media (prefers-reduced-motion: reduce){
+  .reveal{opacity:1;transform:none;transition:none;}
+}
+
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<!-- ============== HEADER ============== -->
+<header class="site-header">
+  <div class="nav-inner">
+    <a href="#" class="wordmark" aria-label="Honey & Cream — Home">Honey <em>&</em> Cream</a>
+
+    <nav aria-label="Primary">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" data-nav-link>Home</a></li>
+        <li><a href="#menu" data-nav-link>Menu</a></li>
+        <li><a href="#story" data-nav-link>Our Story</a></li>
+        <li><a href="#gallery" data-nav-link>Gallery</a></li>
+        <li><a href="#visit" data-nav-link>Visit Us</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-actions">
+      <a class="icon-btn ig-nav-btn" href="https://www.instagram.com/honeycreamkitchen/" target="_blank" rel="noopener noreferrer" aria-label="Visit Honey & Cream on Instagram (opens in a new tab)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1"/></svg>
+      </a>
+      <button class="icon-btn theme-toggle" id="themeToggle" aria-label="Switch to dark theme" aria-pressed="false">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.5A9 9 0 1 1 11.5 3a7 7 0 0 0 9.5 9.5Z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8 6 18M18 6l1.8-1.8"/></svg>
+      </button>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+<div class="nav-backdrop" id="navBackdrop"></div>
+
+<main id="main-content">
+
+<!-- ============== HERO ============== -->
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div class="hero-copy reveal">
+      <span class="hero-kicker"><span class="dot"></span> North London · Café &amp; Brunch</span>
+      <h1>A little <span class="accent">sweetness</span> in every moment.</h1>
+      <p class="lede">Honey &amp; Cream is a welcoming neighbourhood spot on the High Road for breakfast, brunch, great coffee and indulgent treats — a relaxed place to linger over a plate with friends, family, or just yourself.</p>
+      <div class="hero-actions">
+        <a href="#menu" class="btn btn-primary">Explore the Menu</a>
+        <a href="#visit" class="btn btn-outline">Find Us</a>
+        <a href="https://www.instagram.com/honeycreamkitchen/" target="_blank" rel="noopener noreferrer" class="btn btn-ig">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1"/></svg>
+          @honeycreamkitchen
+        </a>
+      </div>
+      <div class="hero-meta">
+        <span class="hero-meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s7-7.1 7-12.5A7 7 0 0 0 5 9.5C5 14.9 12 22 12 22Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+          <span>1367 High Rd, London N20 9LN</span>
+        </span>
+        <span class="hero-meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+          <span><strong>Open daily</strong> 8:00am – 4:30pm</span>
+        </span>
+      </div>
+    </div>
+    <div class="hero-visual reveal">
+      <img src="https://i.ibb.co/sJRbJ4Ks/honey-n-cream.webp" alt="A beautifully presented dish from Honey & Cream, served with care in the café's dining room" loading="eager" fetchpriority="high" width="900" height="1125" onerror="this.closest('.hero-visual').classList.add('img-fallback'); this.style.display='none';">
+      <span class="hero-badge">Great coffee · Great desserts</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============== STORY ============== -->
+<section class="story section-pad" id="story">
+  <div class="container story-grid">
+    <div class="story-art reveal">
+      <div class="motif" aria-hidden="true"></div>
+      <div class="story-art-inner">
+        <span class="quote-mark" aria-hidden="true">“</span>
+        <p>Good mornings deserve good company, good coffee and something sweet.</p>
+      </div>
+    </div>
+    <div class="story-copy reveal">
+      <span class="eyebrow">Our Story</span>
+      <h2 class="section-title">A cosy corner of the High Road</h2>
+      <p>Honey &amp; Cream is a relaxed, friendly café built around the simple pleasures of brunch done properly — soft scrambled eggs, good bread, carefully pulled coffee and something sweet to finish. It's the kind of place you can bring the whole family, settle in with a book on your own, or catch up with friends over a long breakfast.</p>
+      <p>Our kitchen moves from hearty breakfast plates through brunch classics, fresh salads and bowls, right through to indulgent pancakes, milkshakes and a thoughtful drinks list — all served in a casual, trendy, genuinely cosy room with a warm welcome for dogs and children alike.</p>
+      <div class="story-tags">
+        <span class="tag">Great coffee</span>
+        <span class="tag">Great desserts</span>
+        <span class="tag">Great tea selection</span>
+        <span class="tag">Family-friendly</span>
+        <span class="tag">Dog-friendly</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== SECOND MAIN IMAGE ============== -->
+<section class="feature-photo section-pad">
+  <div class="container">
+    <div class="feature-photo-inner reveal">
+      <img src="https://i.ibb.co/DPPshzyv/IMG-8271.jpg" alt="A generous spread of brunch dishes at Honey & Cream, freshly prepared and ready to serve" loading="lazy" width="1600" height="900" onerror="this.closest('.feature-photo-inner').classList.add('img-fallback'); this.style.display='none';">
+      <div class="feature-caption">
+        <span class="eyebrow">On the table today</span>
+        <h3>Thoughtfully plated, generously portioned, made for sharing.</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== GALLERY ============== -->
+<section class="gallery section-pad" id="gallery">
+  <div class="container">
+    <div class="gallery-head reveal">
+      <div>
+        <span class="eyebrow">Gallery</span>
+        <h2 class="section-title">A peek inside Honey &amp; Cream</h2>
+      </div>
+      <p class="section-lede" style="margin-top:0;">Food, coffee and the room itself — a few moments from the café.</p>
+    </div>
+  </div>
+  <div class="gallery-track-wrap">
+    <div class="gallery-track" id="galleryTrack">
+      <!-- populated by JS for guaranteed seamless duplication -->
+    </div>
+  </div>
+</section>
+
+<!-- ============== MENU ============== -->
+<section class="menu-section section-pad" id="menu">
+  <div class="container">
+    <div class="menu-intro reveal">
+      <span class="eyebrow">The Menu</span>
+      <h2 class="section-title">Everything we serve</h2>
+      <p class="section-lede">From full breakfasts to signature cocktails — our complete menu, exactly as served in the café. Search for a dish or drink, or browse by category.</p>
+    </div>
+  </div>
+
+  <div class="menu-toolbar">
+    <div class="container">
+      <div class="search-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="search" class="search-input" id="menuSearch" placeholder="Search the menu — e.g. avocado, matcha, mojito…" aria-label="Search the menu">
+      </div>
+      <div class="chip-row" id="chipRow" role="tablist" aria-label="Menu categories"></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <p class="no-results" id="noResults">No dishes or drinks match your search. Try another word.</p>
+    <div id="menuContainer"></div>
+  </div>
+</section>
+
+<!-- ============== REVIEWS ============== -->
+<section class="reviews section-pad">
+  <div class="container">
+    <div class="reviews-card reveal">
+      <div>
+        <div class="stars" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.9-5 4.8 1.3 6.9-6.1-3.4L5.9 21l1.3-6.9-5-4.8 6.9-.9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.9-5 4.8 1.3 6.9-6.1-3.4L5.9 21l1.3-6.9-5-4.8 6.9-.9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.9-5 4.8 1.3 6.9-6.1-3.4L5.9 21l1.3-6.9-5-4.8 6.9-.9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.9-5 4.8 1.3 6.9-6.1-3.4L5.9 21l1.3-6.9-5-4.8 6.9-.9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.9-5 4.8 1.3 6.9-6.1-3.4L5.9 21l1.3-6.9-5-4.8 6.9-.9z"/></svg>
+        </div>
+        <h3>See what regulars are saying on Google</h3>
+        <p>We'd rather you read honest reviews straight from the source than a handful we've picked out ourselves. Find Honey &amp; Cream on Google to see current ratings and reviews.</p>
+      </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=Honey+%26+Cream+1367+High+Rd+London+N20+9LN" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Read our Google Reviews</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== LOCATION / VISIT ============== -->
+<section class="location section-pad" id="visit">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:2.5rem;">
+      <span class="eyebrow">Visit Us</span>
+      <h2 class="section-title">Find Honey &amp; Cream</h2>
+      <p class="section-lede">On the High Road in North London — open every day for breakfast, brunch and coffee.</p>
+    </div>
+
+    <div class="location-grid">
+      <div class="location-card reveal">
+        <h3>Get in touch</h3>
+
+        <div class="loc-detail">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s7-7.1 7-12.5A7 7 0 0 0 5 9.5C5 14.9 12 22 12 22Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+          <div><strong>Address</strong><span>1367 High Rd, London N20 9LN, United Kingdom</span></div>
+        </div>
+        <div class="loc-detail">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+          <div><strong>Opening Hours</strong><span>Every day, 8:00am – 4:30pm</span></div>
+        </div>
+        <div class="loc-detail">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.1 2Z"/></svg>
+          <div><strong>Telephone</strong><span><a href="tel:07757726240">07757 726240</a></span></div>
+        </div>
+        <div class="loc-detail">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1"/></svg>
+          <div><strong>Instagram</strong><span><a href="https://www.instagram.com/honeycreamkitchen/" target="_blank" rel="noopener noreferrer">@honeycreamkitchen</a></span></div>
+        </div>
+
+        <div class="loc-actions">
+          <a href="tel:07757726240" class="btn btn-primary">Call Us</a>
+          <a href="https://www.google.com/maps/search/?api=1&query=Honey+%26+Cream+1367+High+Rd+London+N20+9LN" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Get Directions</a>
+          <a href="#menu" class="btn btn-outline">Back to Menu</a>
+        </div>
+      </div>
+
+      <div class="location-card reveal">
+        <h3>Good to know</h3>
+        <div class="info-grid">
+          <div class="info-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="4" r="2"/><path d="M19 13l-4-1-2-4-5 1v5l3 6M9 9l-3 1v4l-3 7"/></svg>
+            Wheelchair-accessible entrance
+          </div>
+          <div class="info-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+            Outdoor seating available
+          </div>
+          <div class="info-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16l-1.5 11a2 2 0 0 1-2 2h-9a2 2 0 0 1-2-2L4 7Z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg>
+            Takeaway &amp; delivery
+          </div>
+          <div class="info-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9h18v10H3z"/><path d="M3 9l2-5h14l2 5"/></svg>
+            Dine-in with table service
+          </div>
+          <div class="info-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="7" r="3"/><path d="M2 21v-1a6 6 0 0 1 6-6h2a6 6 0 0 1 6 6v1"/><circle cx="18" cy="8" r="2"/></svg>
+            Family-friendly, high chairs &amp; changing tables
+          </div>
+          <div class="info-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 16c1-4 3-6 3-9a3 3 0 1 1 6 0c0 2 1 3 2 4"/><path d="M11 11c2-1 4-1 5 1 1.5 2 1 5-1 6-2 1-5 1-6-1"/></svg>
+            Dogs welcome, inside &amp; outside
+          </div>
+          <div class="info-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+            Cards, contactless &amp; mobile payments
+          </div>
+          <div class="info-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
+            Free &amp; paid street parking (spaces can be limited)
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============== FOOTER ============== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#home" class="wordmark">Honey <em>&</em> Cream</a>
+        <p>A neighbourhood café and brunch restaurant on the High Road — great coffee, great desserts, and a warm place to sit for a while.</p>
+        <a class="footer-social" href="https://www.instagram.com/honeycreamkitchen/" target="_blank" rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1"/></svg>
+          @honeycreamkitchen
+        </a>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#story">Our Story</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#visit">Visit Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Visit</h4>
+        <ul>
+          <li>1367 High Rd</li>
+          <li>London N20 9LN</li>
+          <li>Open daily, 8:00am–4:30pm</li>
+          <li><a href="tel:07757726240">07757 726240</a></li>
+          <li><a href="https://www.google.com/maps/search/?api=1&query=Honey+%26+Cream+1367+High+Rd+London+N20+9LN" target="_blank" rel="noopener noreferrer">Get Directions</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="year"></span> Honey &amp; Cream. All rights reserved.</span>
+      <span>1367 High Rd, London N20 9LN</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ============ THEME TOGGLE ============ */
+  var themeBtn = document.getElementById('themeToggle');
+  function applyThemeLabel(){
+    var theme = document.documentElement.getAttribute('data-theme');
+    var isDark = theme === 'dark';
+    themeBtn.setAttribute('aria-pressed', String(isDark));
+    themeBtn.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
+  }
+  applyThemeLabel();
+  themeBtn.addEventListener('click', function(){
+    var current = document.documentElement.getAttribute('data-theme');
+    var next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try{ localStorage.setItem('hc-theme', next); }catch(e){}
+    applyThemeLabel();
+  });
+
+  /* ============ MOBILE NAV ============ */
+  var hamburger = document.getElementById('hamburgerBtn');
+  var navLinks = document.getElementById('navLinks');
+  var backdrop = document.getElementById('navBackdrop');
+
+  function openNav(){
+    navLinks.classList.add('open');
+    backdrop.classList.add('open');
+    hamburger.setAttribute('aria-expanded','true');
+    hamburger.setAttribute('aria-label','Close menu');
+    document.body.style.overflow='hidden';
+    var firstLink = navLinks.querySelector('a');
+    if(firstLink) firstLink.focus();
+  }
+  function closeNav(){
+    navLinks.classList.remove('open');
+    backdrop.classList.remove('open');
+    hamburger.setAttribute('aria-expanded','false');
+    hamburger.setAttribute('aria-label','Open menu');
+    document.body.style.overflow='';
+  }
+  hamburger.addEventListener('click', function(){
+    var expanded = hamburger.getAttribute('aria-expanded') === 'true';
+    expanded ? closeNav() : openNav();
+  });
+  backdrop.addEventListener('click', closeNav);
+  navLinks.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click', closeNav);
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && navLinks.classList.contains('open')) closeNav();
+  });
+
+  /* ============ GALLERY ============ */
+  var galleryImages = [
+    {src:"https://i.ibb.co/9jcSY0Y/IMG-8266.jpg", alt:"A beautifully plated brunch dish at Honey & Cream"},
+    {src:"https://i.ibb.co/hJZg6Ky0/IMG-8265.jpg", alt:"Coffee and food served in the Honey & Cream dining room"},
+    {src:"https://i.ibb.co/PsxyqKTd/IMG-8267.jpg", alt:"A close-up of a dish from the Honey & Cream menu"},
+    {src:"https://i.ibb.co/x8XHvCHh/IMG-8264.jpg", alt:"A fresh plate prepared in the Honey & Cream kitchen"},
+    {src:"https://i.ibb.co/21b0xc8M/IMG-8270.jpg", alt:"A seasonal dish served at Honey & Cream"},
+    {src:"https://i.ibb.co/zV1wxXFB/IMG-8268.jpg", alt:"Inside the warm, cosy atmosphere of Honey & Cream"}
+  ];
+  var track = document.getElementById('galleryTrack');
+  function buildGallery(){
+    track.innerHTML = '';
+    // duplicate the set once for a seamless loop
+    var doubled = galleryImages.concat(galleryImages);
+    doubled.forEach(function(img){
+      var fig = document.createElement('figure');
+      fig.className = 'gallery-item';
+      var image = document.createElement('img');
+      image.src = img.src;
+      image.alt = img.alt;
+      image.loading = 'lazy';
+      image.width = 340; image.height = 400;
+      image.onerror = function(){
+        fig.style.display = 'flex';
+        fig.style.alignItems = 'center';
+        fig.style.justifyContent = 'center';
+        fig.style.color = 'var(--text-muted)';
+        fig.style.fontSize = '.85rem';
+        fig.textContent = 'Image unavailable';
+      };
+      fig.appendChild(image);
+      track.appendChild(fig);
+    });
+  }
+  buildGallery();
+
+  /* ============ MENU DATA ============ */
+  var MENU_DATA = [
+    { id:"breakfast", title:"Breakfast", blurb:"Hearty plates to start the day right.",
+      items:[
+        {name:"Full Up", price:"£13.50", note:"Also available as a halal option.", desc:"2 fried eggs, bacon, Cumberland sausage, grilled mushrooms, grilled tomatoes, baked beans & hash browns, served with buttered toast."},
+        {name:"Vegi Up", price:"£14.00", desc:"2 fried eggs, avocado, vegetarian sausage, grilled tomatoes, grilled mushrooms, hash browns & baked beans, served with buttered sourdough."},
+        {name:"Vegan Breakfast", price:"£13.90", desc:"Smashed avocado, vegi sausage, hummus, grilled tomatoes, mushrooms, baked beans & sautéed spinach, served with toasted sourdough."},
+        {name:"Crushed Feta", price:"£12.50", desc:"Crushed feta cheese with sautéed tomatoes and poached egg topped with chilli butter, served with buttered sourdough.", extras:[{label:"Extras", items:[{name:"Sucuk",price:"£2.50"},{name:"Hashbrown",price:"£2.50"}]}]},
+        {name:"Istanbul", price:"£15.00", desc:"Scrambled eggs, sucuk, feta cheese, halloumi, filo pastry, Mediterranean salad, olives, honey and cream, jam, tahini molasses, served with Turkish bread."}
+      ]
+    },
+    { id:"brunch", title:"Brunch", blurb:"Fresh plates, perfect for a lingering morning.",
+      items:[
+        {name:"Avocado Eggs on Toast", price:"£12.50", desc:"Smashed avocado with fresh basil & poached eggs on buttered sourdough, sprinkled with mixed seeds, served with side salad.", extras:[{label:"Extra", items:[{name:"Crushed Feta",price:"£2.00"}]}]},
+        {name:"Pink Avocado", price:"£14.50", desc:"Smashed avocado blended with fresh basil, topped with smoked salmon, mixed seeds and a poached egg on buttered sourdough, served with a side salad."},
+        {name:"Eggs Delight", price:"£13.50", desc:"Choice between smoked salmon, sautéed spinach or bacon with poached eggs on toasted English muffin topped with hollandaise sauce, served with side salad."},
+        {name:"Omelette", price:"£10.00", desc:"Cheese omelette, served with chips, salad & coleslaw.", extras:[{label:"Extra toppings — £1.70 each", items:[{name:"Mushrooms"},{name:"Tomatoes"},{name:"Bacon"},{name:"Onion"},{name:"Spinach"},{name:"Peppers"},{name:"Ham"}]}]},
+        {name:"Forest Up", price:"£13.50", desc:"Layers of halloumi cheese, mushroom, mixed peppers and green leaves all topped on toasted sourdough with scrambled eggs and drizzled chilli butter."},
+        {name:"Summer Avocado", price:"£13.00", desc:"Smashed avocado on sourdough bread topped with crushed feta cheese accompanied with summer berries."},
+        {name:"Shakshuka", price:"£14.00", desc:"Poached eggs infused in a tomato sauce with peppers, herbs, topped with feta cheese served with Turkish bread.", extras:[{label:"Extra", items:[{name:"Sucuk",price:"£2.50"}]}]},
+        {name:"Turkish Eggs", price:"£13.50", desc:"Poached eggs, parsley, dill and chilli butter topped on garlic yogurt served with Turkish bread.", extras:[{label:"Extra", items:[{name:"Sucuk",price:"£2.50"}]}]}
+      ]
+    },
+    { id:"signatures", title:"Signatures", blurb:"The dishes Honey & Cream is known for.", featured:true,
+      items:[
+        {name:"New York", price:"£15.90", note:"Also available as a halal option.", desc:"Pancakes or French toast with 2 fried eggs, Cumberland sausage, bacon, hash browns, baked beans. Served with seasonal fruits, clotted cream & maple syrup."},
+        {name:"Medi Land", price:"£16.90", note:"Also available as a vegi option.", desc:"Pancakes or French toast with scrambled eggs, sucuk, halloumi, olives, grilled mushrooms, grilled tomatoes. Served with seasonal fruit, clotted cream & maple syrup."},
+        {name:"Honey & Cream", price:"£9.90", desc:"Clotted cream drizzled with organic honey, finished with pomegranate and crushed pistachios, served with toasted sourdough."},
+        {name:"Tower of Berries", price:"£13.50", desc:"Layers of fluffy pancakes served with seasonal fruits, clotted cream and maple syrup.", extras:[{label:"Extras", items:[{name:"Nutella or Biscoff",price:"£2.00"},{name:"White Chocolate",price:"£2.50"},{name:"Pistachio Chocolate",price:"£2.50"}]}]},
+        {name:"French Toast", price:"£13.50", desc:"Cinnamon French toast with hints of vanilla & caramel, served with seasonal fruits, clotted cream and maple syrup.", extras:[{label:"Extras", items:[{name:"Nutella or Biscoff",price:"£2.00"},{name:"White Chocolate",price:"£2.50"},{name:"Pistachio Chocolate",price:"£2.50"}]}]},
+        {name:"Crispy Stack", price:"£15.50", desc:"Pancakes or French toast with fried chicken and fried egg drizzled on a layer of choice, served with maple syrup."}
+      ]
+    },
+    { id:"sides", title:"Sides", blurb:"Little extras to share.",
+      items:[
+        {name:"Fries", price:"£4.00"},
+        {name:"Curley Fries", price:"£4.50"},
+        {name:"Sweet Potato Fries", price:"£4.50"},
+        {name:"Fruit Bowl", price:"£7.00"},
+        {name:"Cigara Borek", price:"£7.00", desc:"Crispy, herby cheese filo pastry rolls served with sweet chilli."},
+        {name:"Crispy Halloumi Sticks", price:"£7.00", desc:"Served with sweet chilli."},
+        {name:"Crispy Calamari", price:"£7.00", desc:"Served with tartare sauce."}
+      ]
+    },
+    { id:"substitutes", title:"Substitutes", blurb:"Build your plate exactly how you like it.",
+      items:[
+        {name:"Fried / Poached Egg", price:"£2.20"},
+        {name:"Scrambled Egg", price:"£2.50"},
+        {name:"Bacon", price:"£3.00"},
+        {name:"Sucuk", price:"£3.50"},
+        {name:"Halloumi", price:"£4.00"},
+        {name:"Avocado", price:"£3.50"},
+        {name:"Hash Browns", price:"£3.00"},
+        {name:"Buttered Sourdough", price:"£2.80"},
+        {name:"Buttered Toast", price:"£2.70"},
+        {name:"Buttered Brown Toast", price:"£2.70"}
+      ]
+    },
+    { id:"lunch", title:"Lunch", blurb:"Satisfying plates for the afternoon.",
+      items:[
+        {name:"Grilled Chicken", price:"£15.50", desc:"Seasoned grilled chicken served with chips, side salad & coleslaw."},
+        {name:"Chicken Alfredo", price:"£16.50", desc:"Penne pasta with a creamy cheesy white sauce mixed with herbs and mushrooms served with our marinated grilled chicken."},
+        {name:"Tomato Basil Pasta", price:"£13.50", desc:"Penne pasta tossed in rich tomato, garlic and basil sauce, finished with extra virgin olive oil and herbs.", extras:[{label:"Extras", items:[{name:"Chicken Breast",price:"£5.00"},{name:"Classic Prawns",price:"£5.00"}]}]},
+        {name:"Classic Jacket", price:"£10.00", desc:"Cheesy jacket potato with garlic & herb butter served with salad & coleslaw.", extras:[{label:"Extras", items:[{name:"Baked Beans",price:"£1.60"},{name:"Mixed Veg",price:"£1.70"},{name:"Tuna",price:"£1.80"}]}]},
+        {name:"Burger Explode", price:"£15.00", desc:"Choice between beef or chicken, cheese burger filled with mixed salad, tomatoes, caramelised onions, pickles, with our special mustard mayo sauce served with a side of fries & coleslaw.", extras:[{label:"Extras", items:[{name:"Bacon",price:"£2.00"},{name:"Fried Egg",price:"£1.70"}]}]}
+      ]
+    },
+    { id:"wraps", title:"Wraps, Bagels & Sandwiches", blurb:"Handheld favourites, made fresh.",
+      items:[
+        {name:"Breakfast Bun", price:"£10.50", note:"Also available as a vegi option.", desc:"Scrambled egg, bacon, sausage topped with American cheese in a brioche bun."},
+        {name:"Crushed Bagel", price:"£12.50", desc:"Smashed avocado, feta cheese, tomatoes & parsley topped with chilli flakes on toasted bagel, served with side salad.", extras:[{label:"Extra", items:[{name:"Egg (fried, scrambled, poached)",price:"£3.00"}]}]},
+        {name:"Dirty Wrap", price:"£14.50", desc:"Grilled chicken, bacon, avocado, halloumi, mixed green leaves, tomatoes & Caesar dressing served with chips & coleslaw."},
+        {name:"Medi Wrap", price:"£12.50", desc:"Grilled halloumi, hummus, grilled mixed peppers, green leaves, tomatoes & Caesar dressing served with chips & coleslaw."},
+        {name:"Crispy Wrap", price:"£13.50", desc:"Fried chicken, grilled halloumi, green leaves, cucumbers, mayo & sweet chilli served with chips & coleslaw."},
+        {name:"Tuna Melt", price:"£10.50", desc:"Tuna mayo, sweetcorn, melted cheese served with chips & coleslaw."}
+      ]
+    },
+    { id:"salads", title:"Salads", blurb:"Light, fresh and generously dressed.",
+      items:[
+        {name:"The Chicken Salad", price:"£16.50", desc:"Grilled chicken, croutons, grilled halloumi, tomatoes, cucumbers, green leaves & Caesar dressing."},
+        {name:"The Breeze Salad", price:"£15.50", desc:"Feta cheese, green leaves, olives, cucumbers, tomatoes, hummus, grilled peppers, pomegranate molasses & olive oil."},
+        {name:"Prawn and Avocado Salad", price:"£17.00", desc:"Sliced avocado, prawns, cucumbers, tomatoes, pomegranate, mixed leaves dressed with honey mustard."}
+      ]
+    },
+    { id:"bowls", title:"Bowls", blurb:"Nourishing bowls, any time of day.",
+      items:[
+        {name:"Berrylicious", price:"£11.00", desc:"Açai, coconut flakes, organic granola, berries & banana."},
+        {name:"The Porridge", price:"£10.00", desc:"Organic porridge, banana, berries, honey & tahini."},
+        {name:"The Crunch", price:"£10.50", desc:"Organic granola, Greek style yogurt, seasonal fruit & honey."}
+      ]
+    },
+    { id:"coffee", title:"Coffee, Teas & Iced Drinks", blurb:"Great coffee, and a proper tea selection.",
+      items:[
+        {name:"Espresso", price:"£2.90"}, {name:"Espresso Macchiato", price:"£3.20"}, {name:"Cortado", price:"£3.40"},
+        {name:"Americano", price:"£3.50"}, {name:"Flat White", price:"£3.80"}, {name:"Latte", price:"£3.80"},
+        {name:"Cappuccino", price:"£3.80"}, {name:"Mocha", price:"£4.30"}, {name:"Matcha Latte", price:"£4.90"},
+        {name:"Chai Latte", price:"£4.30"}, {name:"Dirty Chai Latte", price:"£4.80"}, {name:"Turkish Coffee", price:"£3.50"},
+        {name:"Hot Chocolate", price:"£4.40"}, {name:"Babycino", price:"£3.00"}, {name:"Tea Pot", price:"+£2.00"},
+        {name:"English Tea", price:"£2.90"}, {name:"Decaf English Tea", price:"£2.90"}, {name:"Earl Grey", price:"£2.90"},
+        {name:"Green Tea", price:"£2.90"}, {name:"Peppermint Tea", price:"£2.90"}, {name:"Chamomile Tea", price:"£2.90"},
+        {name:"Lemon & Ginger Tea", price:"£2.90"}, {name:"Turkish Tea", price:"£2.90"}, {name:"Fruit Tea", price:"£2.90"},
+        {name:"Fresh Tea", price:"£2.90"}, {name:"Iced Americano", price:"£4.00"}, {name:"Iced Latte", price:"£4.50"},
+        {name:"Iced Mocha", price:"£4.80"}, {name:"Iced Chocolate", price:"£4.90"}, {name:"Iced Matcha", price:"£5.10"},
+        {name:"Iced Chai Latte", price:"£4.80"}, {name:"Iced Dirty Chai Latte", price:"£5.10"}
+      ]
+    },
+    { id:"signature-drinks", title:"Signature Drinks", blurb:"House specials you won't find elsewhere.", featured:true,
+      items:[
+        {name:"Iced Bear Latte", price:"£5.50"},
+        {name:"Iced Bear Matcha", price:"£6.00"},
+        {name:"Iced Blueberry Bear Matcha", price:"£6.50"},
+        {name:"Iced Turkish Delight Latte", price:"£5.20"},
+        {name:"Turkish Delight Latte", price:"£4.80"}
+      ]
+    },
+    { id:"milkshakes", title:"Milkshakes", blurb:"Thick, creamy and classic.",
+      items:[
+        {name:"Chocolate", price:"£6.80"}, {name:"Vanilla", price:"£6.80"}, {name:"Strawberry", price:"£6.80"},
+        {name:"Oreo", price:"£7.00"}, {name:"Banana", price:"£6.80"}, {name:"Banana, Strawberry, Chocolate", price:"£7.10"}
+      ]
+    },
+    { id:"juices", title:"Fresh Juice & Smoothies", blurb:"Pressed and blended to order.",
+      items:[
+        {name:"Orange", price:"£5.80"}, {name:"Apple", price:"£5.80"}, {name:"Apple, Carrot, Ginger", price:"£6.60"},
+        {name:"Apple, Blueberry, Ginger", price:"£6.90"}, {name:"Orange, Carrot, Ginger", price:"£6.90"},
+        {name:"Apple, Cucumber, Lemon, Ginger", price:"£7.20"}, {name:"Apple, Pear, Orange, Kiwi", price:"£7.20"},
+        {name:"Apple, Strawberry, Orange, Ginger", price:"£7.20"}, {name:"Sunshine", price:"£7.20"},
+        {name:"Berry Bliss", price:"£7.20"}, {name:"Organic Forest", price:"£7.20"}
+      ]
+    },
+    { id:"soft-drinks", title:"Soft Drinks", blurb:"",
+      items:[
+        {name:"Still Water", price:"£2.90"}, {name:"Sparkling Water", price:"£2.90"}, {name:"Coca Cola", price:"£2.90"},
+        {name:"Diet Coke", price:"£2.90"}, {name:"Coke Zero", price:"£2.90"}, {name:"Fanta", price:"£2.90"}, {name:"Sprite", price:"£2.90"}
+      ]
+    },
+    { id:"kids", title:"Kids Menu", blurb:"Good for children — high chairs available.",
+      items:[
+        {name:"Mini New York", price:"£7.00", desc:"1 fried egg, bacon, 1 pancake & maple syrup."},
+        {name:"Mini Breakfast", price:"£6.00", desc:"Sausage, beans & chips."},
+        {name:"Mini Omelette", price:"£6.00", desc:"Cheese omelette served with chips & cucumbers."},
+        {name:"Mini Strips", price:"£6.00", desc:"3 chicken strips & chips."}
+      ]
+    },
+    { id:"alternatives", title:"Alternatives", blurb:"Make your drink exactly how you like it.",
+      items:[
+        {name:"Decaff", price:"£0.30"}, {name:"Extra Shot", price:"£0.50"}, {name:"Oat Milk", price:"£0.50"},
+        {name:"Soya Milk", price:"£0.50"}, {name:"Coconut Milk", price:"£0.50"}, {name:"Vanilla Syrup", price:"£0.50"},
+        {name:"Caramel Syrup", price:"£0.50"}, {name:"Hazelnut Syrup", price:"£0.50"}, {name:"Honey", price:"£0.50"},
+        {name:"Blueberry Syrup", price:"£0.90"}, {name:"White Chocolate", price:"£0.90"}, {name:"Pistachio Chocolate", price:"£0.90"},
+        {name:"Pumpkin Spice", price:"£0.60"}
+      ]
+    },
+    { id:"signature-cocktails", title:"Signature Cocktails", blurb:"Honey & Cream originals.", featured:true,
+      items:[
+        {name:"Honey Bloom G&T", price:"£11.50", desc:"A bright and refreshing gin & tonic, lightly sweetened with golden honey & finished with delicate floral notes."},
+        {name:"Raspberry Kiss", price:"£12.95", desc:"A crisp mix of vodka, raspberry liqueur, fresh lime juice & a sparkling mixer."},
+        {name:"Moca Martini", price:"£13.75", desc:"A decadent mix of vodka, coffee liqueur, fresh espresso & chocolate."},
+        {name:"Honey & Cream", price:"£13.95", desc:"A smooth mix of vodka, raspberry liqueur, honey syrup, lemon juice & sparkling mixer."}
+      ]
+    },
+    { id:"cocktails", title:"Cocktails", blurb:"The classics, done well.",
+      items:[
+        {name:"Mimosa", price:"£9.00"}, {name:"Martini", price:"£9.50"}, {name:"Mojito", price:"£10.00"},
+        {name:"Berry Bellini", price:"£9.75"}, {name:"Bloody Mary", price:"£12.50"}, {name:"Espresso Martini", price:"£12.50"}
+      ]
+    },
+    { id:"wine", title:"Wine", blurb:"By the glass.",
+      items:[
+        {name:"Red Wine", desc:"A medium-bodied red with blackberry and ripe plum flavours, soft and silky, with fruity aromas meeting hints of spicy oak.", sizes:[{label:"175ml",price:"£6.75"},{label:"250ml",price:"£8.50"}]},
+        {name:"White Wine", desc:"Bright citrus, green apple, and a touch of lemon with a clean, zesty finish.", sizes:[{label:"175ml",price:"£6.75"},{label:"250ml",price:"£8.50"}]},
+        {name:"Rosé Wine", desc:"A crisp, refreshing rosé with delightful notes of strawberry.", sizes:[{label:"175ml",price:"£6.75"},{label:"250ml",price:"£8.50"}]},
+        {name:"Prosecco", desc:"Juicy stone fruit and citrus flavours with a soft, creamy fizz that dances on the palate.", sizes:[{label:"125ml",price:"£6.75"},{label:"175ml",price:"£8.00"}]}
+      ]
+    },
+    { id:"beers", title:"Beers", blurb:"",
+      items:[
+        {name:"Peroni", price:"£4.50"}, {name:"Corona", price:"£4.50"}, {name:"Efes", price:"£5.00"}
+      ]
+    }
+  ];
+
+  /* ============ RENDER MENU ============ */
+  var menuContainer = document.getElementById('menuContainer');
+  var chipRow = document.getElementById('chipRow');
+  var noResults = document.getElementById('noResults');
+
+  function renderItem(item){
+    var li = document.createElement('div');
+    li.className = 'menu-item';
+    li.setAttribute('data-search', (item.name + ' ' + (item.desc||'')).toLowerCase());
+
+    var row = document.createElement('div');
+    row.className = 'menu-item-row';
+    var nameEl = document.createElement('span');
+    nameEl.className = 'menu-item-name';
+    nameEl.textContent = item.name;
+    row.appendChild(nameEl);
+
+    if(item.price){
+      var priceEl = document.createElement('span');
+      priceEl.className = 'menu-item-price';
+      priceEl.textContent = item.price;
+      row.appendChild(priceEl);
+    }
+    li.appendChild(row);
+
+    if(item.note){
+      var noteEl = document.createElement('span');
+      noteEl.className = 'menu-item-note';
+      noteEl.textContent = item.note;
+      li.appendChild(noteEl);
+    }
+
+    if(item.desc){
+      var descEl = document.createElement('p');
+      descEl.className = 'menu-item-desc';
+      descEl.textContent = item.desc;
+      li.appendChild(descEl);
+    }
+
+    if(item.sizes){
+      var sizesWrap = document.createElement('div');
+      sizesWrap.className = 'menu-sizes';
+      item.sizes.forEach(function(s){
+        var pill = document.createElement('span');
+        pill.className = 'size-pill';
+        pill.innerHTML = '<span class="sz">'+s.label+'</span><span class="pr">'+s.price+'</span>';
+        sizesWrap.appendChild(pill);
+      });
+      li.appendChild(sizesWrap);
+    }
+
+    if(item.extras){
+      item.extras.forEach(function(group){
+        var extraWrap = document.createElement('div');
+        extraWrap.className = 'menu-extras';
+        var label = document.createElement('span');
+        label.className = 'extra-label';
+        label.textContent = group.label + ':';
+        extraWrap.appendChild(label);
+        group.items.forEach(function(g){
+          var pill = document.createElement('span');
+          pill.className = 'extra-pill';
+          pill.textContent = g.price ? (g.name + ' — ' + g.price) : g.name;
+          extraWrap.appendChild(pill);
+        });
+        li.appendChild(extraWrap);
+      });
+    }
+
+    return li;
+  }
+
+  function renderCategory(cat){
+    var section = document.createElement('section');
+    section.className = 'menu-category' + (cat.featured ? ' featured' : '');
+    section.id = 'menu-' + cat.id;
+    section.setAttribute('data-category', cat.id);
+
+    var head = document.createElement('div');
+    head.className = 'menu-cat-head';
+    var h3 = document.createElement('h3');
+    h3.innerHTML = (cat.featured ? '<span class="star">&#10022;</span> ' : '') + cat.title;
+    head.appendChild(h3);
+    if(cat.blurb){
+      var blurb = document.createElement('span');
+      blurb.className = 'blurb';
+      blurb.textContent = cat.blurb;
+      head.appendChild(blurb);
+    }
+    section.appendChild(head);
+
+    var itemsWrap = document.createElement('div');
+    var hasLongContent = cat.items.some(function(i){ return i.desc || i.extras || i.sizes; });
+    itemsWrap.className = 'menu-items' + (hasLongContent ? '' : ' single-col');
+    cat.items.forEach(function(item){
+      itemsWrap.appendChild(renderItem(item));
+    });
+    section.appendChild(itemsWrap);
+
+    return section;
+  }
+
+  function buildMenu(){
+    menuContainer.innerHTML = '';
+    chipRow.innerHTML = '';
+    MENU_DATA.forEach(function(cat, idx){
+      menuContainer.appendChild(renderCategory(cat));
+
+      var chip = document.createElement('a');
+      chip.href = '#menu-' + cat.id;
+      chip.className = 'chip' + (idx === 0 ? ' active' : '');
+      chip.textContent = cat.title;
+      chip.setAttribute('role','tab');
+      chip.addEventListener('click', function(){
+        chipRow.querySelectorAll('.chip').forEach(function(c){ c.classList.remove('active'); });
+        chip.classList.add('active');
+      });
+      chipRow.appendChild(chip);
+    });
+  }
+  buildMenu();
+
+  /* ============ MENU SEARCH ============ */
+  var searchInput = document.getElementById('menuSearch');
+  searchInput.addEventListener('input', function(){
+    var q = searchInput.value.trim().toLowerCase();
+    var anyVisible = false;
+
+    document.querySelectorAll('.menu-category').forEach(function(section){
+      var items = section.querySelectorAll('.menu-item');
+      var categoryHasMatch = false;
+      items.forEach(function(item){
+        var match = !q || item.getAttribute('data-search').indexOf(q) !== -1;
+        item.style.display = match ? '' : 'none';
+        if(match) categoryHasMatch = true;
+      });
+      section.style.display = categoryHasMatch ? '' : 'none';
+      if(categoryHasMatch) anyVisible = true;
+    });
+
+    noResults.classList.toggle('show', !anyVisible);
+  });
+
+  /* ============ SCROLL REVEAL ============ */
+  var revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries, observer){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('in-view'); });
+  }
+
+  /* ============ FOOTER YEAR ============ */
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+})();
+</script>
+
+</body>
+</html>
